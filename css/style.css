@@ -332,14 +332,17 @@ body[data-font="eb-garamond"] .seal-initials {
     padding: 40px 20px;
     position: relative;
     overflow: hidden;
-    transition: all 0.8s ease;
+    transition: min-height 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.8s ease,
+                padding 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .envelope-section.hidden {
+    min-height: 0;
+    padding: 0;
     opacity: 0;
-    visibility: hidden;
     pointer-events: none;
-    position: absolute;
+    overflow: hidden;
 }
 
 /* Hide floral elements */
@@ -355,6 +358,12 @@ body[data-font="eb-garamond"] .seal-initials {
     text-align: center;
     position: relative;
     z-index: 2;
+    transition: transform 1s ease, opacity 0.8s ease;
+}
+
+.envelope-section.hidden .envelope-wrapper {
+    transform: scale(0.9) translateY(-30px);
+    opacity: 0;
 }
 
 /* Envelope */
@@ -431,9 +440,10 @@ body[data-font="eb-garamond"] .seal-initials {
     background: linear-gradient(180deg, var(--envelope-flap) 0%, var(--envelope-outer) 100%);
     clip-path: polygon(0 0, 50% 100%, 100% 0);
     transform-origin: top center;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.4s;
     z-index: 4;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    backface-visibility: hidden;
 }
 
 .flap-inner {
@@ -448,6 +458,7 @@ body[data-font="eb-garamond"] .seal-initials {
 
 .envelope.open .envelope-flap {
     transform: rotateX(180deg);
+    z-index: 1;
 }
 
 /* Letter Inside */
@@ -604,19 +615,14 @@ body[data-font="eb-garamond"] .seal-initials {
     justify-content: center;
     background: var(--color-background);
     padding: 80px 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.9s ease;
+    transition: opacity 1s ease 0.5s;
     overflow: hidden;
 }
 
 .invitation-section.visible {
     opacity: 1;
-    position: relative;
     pointer-events: auto;
 }
 

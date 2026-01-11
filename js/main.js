@@ -133,10 +133,10 @@
         // Add open class to trigger CSS animations
         envelope.classList.add('open');
 
-        // After envelope opens, transition to invitation
+        // After envelope flap opens, start the smooth transition
         setTimeout(() => {
             showInvitation();
-        }, 1500);
+        }, 1200);
     }
 
     /**
