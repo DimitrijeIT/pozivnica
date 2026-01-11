@@ -565,11 +565,12 @@ body {
 
 .section-time {
     font-family: var(--font-serif);
-    font-size: 1.05rem;
-    font-weight: 300;
+    font-size: 1.4rem;
+    font-weight: 500;
     font-style: italic;
-    color: var(--color-text-light);
+    color: var(--color-primary);
     margin-bottom: var(--spacing-md);
+    letter-spacing: 0.05em;
 }
 
 .venue-name {
