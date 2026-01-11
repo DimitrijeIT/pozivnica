@@ -881,7 +881,7 @@ body[data-font="eb-garamond"] .seal-initials {
 /* Card Footer */
 .card-footer {
     text-align: center;
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--color-border-light);
 }
@@ -919,6 +919,41 @@ body[data-font="eb-garamond"] .seal-initials {
     font-style: italic;
     color: var(--color-primary);
     line-height: 1.6;
+}
+
+/* RSVP Section */
+.rsvp-section {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border-light);
+}
+
+.rsvp-text {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text-light);
+    margin: var(--spacing-md) 0;
+    line-height: 1.6;
+}
+
+.btn-viber {
+    margin-top: var(--spacing-sm);
+    background: transparent;
+    border-color: #7360f2;
+    color: #7360f2;
+}
+
+.btn-viber:hover {
+    background: #7360f2;
+    color: white;
+    border-color: #7360f2;
+}
+
+.btn-viber svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* ----------------------------------------
@@ -962,6 +997,10 @@ body[data-font="eb-garamond"] .seal-initials {
 
 .invitation-section.visible .card-footer {
     animation: fadeInUp 0.9s ease 0.85s both;
+}
+
+.invitation-section.visible .rsvp-section {
+    animation: fadeInUp 0.9s ease 1s both;
 }
 
 /* ----------------------------------------

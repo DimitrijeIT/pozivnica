@@ -149,8 +149,10 @@
         // Show invitation section
         invitationSection.classList.add('visible');
 
-        // Scroll to top smoothly
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Scroll to top after transition completes
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }, 100);
     }
 
     /**
