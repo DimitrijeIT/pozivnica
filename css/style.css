@@ -457,6 +457,7 @@ body {
     color: var(--color-text-light);
     letter-spacing: 0.08em;
     margin-bottom: var(--spacing-md);
+    white-space: nowrap;
 }
 
 .card-names {
