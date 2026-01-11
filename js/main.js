@@ -1,6 +1,6 @@
 /**
  * Wedding Invitation - Јелена & Димитрије
- * Minimal Design with Font Selection
+ * Minimal Design
  */
 
 (function() {
@@ -10,25 +10,14 @@
     const envelope = document.getElementById('envelope');
     const envelopeSection = document.getElementById('envelope-section');
     const invitationSection = document.getElementById('invitation-section');
-    const themeSwitcher = document.getElementById('theme-switcher');
-    const themeToggle = document.getElementById('theme-toggle');
-    const fontBtns = document.querySelectorAll('.font-btn');
 
     // State
     let isOpened = false;
-    let isPanelOpen = false;
-
-    // Default font
-    const DEFAULT_FONT = 'cormorant-infant';
 
     /**
      * Initialize the application
      */
     function init() {
-        // Load saved font or use default
-        const savedFont = localStorage.getItem('wedding-font') || DEFAULT_FONT;
-        setFont(savedFont);
-
         // Set up event listeners
         setupEventListeners();
 
@@ -59,67 +48,6 @@
                 }
             });
         }
-
-        // Panel toggle button
-        if (themeToggle) {
-            themeToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                togglePanel();
-            });
-        }
-
-        // Font switcher buttons
-        fontBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const font = btn.getAttribute('data-font');
-                setFont(font);
-                localStorage.setItem('wedding-font', font);
-            });
-        });
-
-        // Close panel when clicking outside
-        document.addEventListener('click', (e) => {
-            if (isPanelOpen && themeSwitcher && !themeSwitcher.contains(e.target)) {
-                closePanel();
-            }
-        });
-
-        // Close panel on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isPanelOpen) {
-                closePanel();
-            }
-        });
-    }
-
-    /**
-     * Toggle panel visibility
-     */
-    function togglePanel() {
-        if (isPanelOpen) {
-            closePanel();
-        } else {
-            openPanel();
-        }
-    }
-
-    /**
-     * Open panel
-     */
-    function openPanel() {
-        isPanelOpen = true;
-        themeSwitcher.classList.add('open');
-        themeToggle.setAttribute('aria-expanded', 'true');
-    }
-
-    /**
-     * Close panel
-     */
-    function closePanel() {
-        isPanelOpen = false;
-        themeSwitcher.classList.remove('open');
-        themeToggle.setAttribute('aria-expanded', 'false');
     }
 
     /**
@@ -153,21 +81,6 @@
         setTimeout(() => {
             window.scrollTo(0, 0);
         }, 1300);
-    }
-
-    /**
-     * Set the font for names
-     * @param {string} font - Font name
-     */
-    function setFont(font) {
-        // Set font attribute on body
-        document.body.setAttribute('data-font', font);
-
-        // Update active button state
-        fontBtns.forEach(btn => {
-            const isActive = btn.getAttribute('data-font') === font;
-            btn.classList.toggle('active', isActive);
-        });
     }
 
     /**
