@@ -14,6 +14,9 @@
     // State
     let isOpened = false;
 
+    // Wedding date: May 10, 2026 at 16:00 (Serbia time, UTC+2)
+    const weddingDate = new Date('2026-05-10T16:00:00+02:00');
+
     /**
      * Initialize the application
      */
@@ -21,10 +24,41 @@
         // Set up event listeners
         setupEventListeners();
 
+        // Start countdown timer
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
         // Check for direct invitation link
         if (window.location.hash === '#invitation') {
             setTimeout(skipToInvitation, 100);
         }
+    }
+
+    /**
+     * Update countdown timer
+     */
+    function updateCountdown() {
+        const now = new Date();
+        const diff = weddingDate - now;
+
+        if (diff <= 0) {
+            // Wedding day has arrived
+            document.getElementById('countdown-days').textContent = '0';
+            document.getElementById('countdown-hours').textContent = '0';
+            document.getElementById('countdown-minutes').textContent = '0';
+            document.getElementById('countdown-seconds').textContent = '0';
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown-days').textContent = days;
+        document.getElementById('countdown-hours').textContent = hours;
+        document.getElementById('countdown-minutes').textContent = minutes;
+        document.getElementById('countdown-seconds').textContent = seconds;
     }
 
     /**
