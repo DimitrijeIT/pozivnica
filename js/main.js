@@ -149,10 +149,10 @@
         // Show invitation section
         invitationSection.classList.add('visible');
 
-        // Scroll to top after transition completes
+        // Scroll to top after envelope collapse transition completes (1.2s)
         setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: 'instant' });
-        }, 100);
+            window.scrollTo(0, 0);
+        }, 1300);
     }
 
     /**
