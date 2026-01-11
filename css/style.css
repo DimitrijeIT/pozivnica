@@ -1,0 +1,1008 @@
+/* ========================================
+   Wedding Invitation - Јелена & Димитрије
+   Minimal Clean Design
+   ======================================== */
+
+/* ----------------------------------------
+   CSS Variables - Minimal Theme Only
+   ---------------------------------------- */
+
+:root {
+    /* Minimal - Clean & Simple */
+    --color-primary: #2c2c2c;
+    --color-primary-dark: #1a1a1a;
+    --color-primary-light: #4a4a4a;
+    --color-secondary: #1a1a1a;
+    --color-accent: #666666;
+    --color-text: #2c2c2c;
+    --color-text-light: #555555;
+    --color-text-muted: #888888;
+    --color-background: #ffffff;
+    --color-background-alt: #fafafa;
+    --color-card: #ffffff;
+    --color-border: rgba(0, 0, 0, 0.15);
+    --color-border-light: rgba(0, 0, 0, 0.08);
+
+    /* Envelope Colors - Clean */
+    --envelope-outer: #f5f5f5;
+    --envelope-inner: #ffffff;
+    --envelope-flap: #ebebeb;
+    --envelope-liner: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    --seal-color: #2c2c2c;
+    --seal-text: #ffffff;
+
+    /* Typography */
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Josefin Sans', 'Helvetica Neue', sans-serif;
+    --font-script: 'Cormorant Infant', serif;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2.5rem;
+    --spacing-xl: 4rem;
+}
+
+/* ----------------------------------------
+   Base Styles
+   ---------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ----------------------------------------
+   Settings Panel
+   ---------------------------------------- */
+.theme-switcher {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 1000;
+}
+
+.theme-toggle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--color-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primary);
+}
+
+.theme-panel {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+    padding: 20px;
+    min-width: 280px;
+    max-height: 70vh;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--color-border-light);
+    backdrop-filter: blur(20px);
+}
+
+.theme-switcher.open .theme-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.theme-panel-title {
+    font-family: var(--font-serif);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-text-light);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border-light);
+    text-align: center;
+}
+
+/* ----------------------------------------
+   Font Options
+   ---------------------------------------- */
+.font-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.font-btn {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: var(--color-background-alt);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+}
+
+.font-btn:hover {
+    border-color: var(--color-primary-light);
+    background: var(--color-card);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.font-btn.active {
+    border-color: var(--color-primary);
+    background: var(--color-card);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.font-preview {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--color-text);
+}
+
+/* Font tooltip on hover */
+.font-btn::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: var(--color-primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.font-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    border: 6px solid transparent;
+    border-top-color: var(--color-primary);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.font-btn:hover::after,
+.font-btn:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Serif Italic Fonts - Cyrillic Support */
+.font-cormorant-infant {
+    font-family: 'Cormorant Infant', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.font-cormorant-garamond {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.font-lora {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.font-spectral {
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.font-eb-garamond {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Apply selected font to names */
+body[data-font="cormorant-infant"] .bride-name,
+body[data-font="cormorant-infant"] .groom-name,
+body[data-font="cormorant-infant"] .letter-script,
+body[data-font="cormorant-infant"] .footer-signature,
+body[data-font="cormorant-infant"] .seal-initials {
+    font-family: 'Cormorant Infant', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+body[data-font="cormorant-garamond"] .bride-name,
+body[data-font="cormorant-garamond"] .groom-name,
+body[data-font="cormorant-garamond"] .letter-script,
+body[data-font="cormorant-garamond"] .footer-signature,
+body[data-font="cormorant-garamond"] .seal-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+body[data-font="playfair"] .bride-name,
+body[data-font="playfair"] .groom-name,
+body[data-font="playfair"] .letter-script,
+body[data-font="playfair"] .footer-signature,
+body[data-font="playfair"] .seal-initials {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+body[data-font="lora"] .bride-name,
+body[data-font="lora"] .groom-name,
+body[data-font="lora"] .letter-script,
+body[data-font="lora"] .footer-signature,
+body[data-font="lora"] .seal-initials {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+body[data-font="spectral"] .bride-name,
+body[data-font="spectral"] .groom-name,
+body[data-font="spectral"] .letter-script,
+body[data-font="spectral"] .footer-signature,
+body[data-font="spectral"] .seal-initials {
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+body[data-font="eb-garamond"] .bride-name,
+body[data-font="eb-garamond"] .groom-name,
+body[data-font="eb-garamond"] .letter-script,
+body[data-font="eb-garamond"] .footer-signature,
+body[data-font="eb-garamond"] .seal-initials {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* ----------------------------------------
+   Envelope Section
+   ---------------------------------------- */
+.envelope-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background-alt);
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.8s ease;
+}
+
+.envelope-section.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+}
+
+/* Hide floral elements */
+.bg-floral,
+.floral-corner,
+.card-floral,
+.letter-floral {
+    display: none !important;
+}
+
+.envelope-wrapper {
+    perspective: 1400px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Envelope */
+.envelope {
+    position: relative;
+    width: 340px;
+    height: 245px;
+    margin: 0 auto;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.envelope:hover {
+    transform: translateY(-8px) rotateX(2deg);
+}
+
+@media (min-width: 480px) {
+    .envelope {
+        width: 440px;
+        height: 315px;
+    }
+}
+
+/* Envelope Back */
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, var(--envelope-outer) 0%, var(--envelope-flap) 100%);
+    border-radius: 6px;
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.1),
+        0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Envelope Liner */
+.envelope-liner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 62%;
+    background: var(--envelope-liner);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.4s;
+}
+
+.envelope.open .envelope-liner {
+    opacity: 1;
+}
+
+/* Envelope Front */
+.envelope-front {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 74%;
+    background: linear-gradient(180deg, var(--envelope-outer) 0%, var(--envelope-flap) 100%);
+    border-radius: 0 0 6px 6px;
+    z-index: 3;
+}
+
+/* Envelope Flap */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64%;
+    background: linear-gradient(180deg, var(--envelope-flap) 0%, var(--envelope-outer) 100%);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top center;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 4;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.flap-inner {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    height: 100%;
+    background: var(--envelope-inner);
+    clip-path: polygon(0 0, 50% 94%, 100% 0);
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+/* Letter Inside */
+.letter {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 86%;
+    height: 82%;
+    background: var(--color-card);
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+    transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--color-border-light);
+}
+
+.envelope.open .letter {
+    transform: translateX(-50%) translateY(-145%) scale(1.02);
+}
+
+.letter-content {
+    text-align: center;
+    z-index: 1;
+    padding: 0 1rem;
+}
+
+.letter-script {
+    display: block;
+    font-family: var(--font-script);
+    font-size: 1.9rem;
+    font-style: italic;
+    color: var(--color-primary);
+    margin-bottom: 0.6rem;
+}
+
+@media (min-width: 480px) {
+    .letter-script {
+        font-size: 2.4rem;
+    }
+}
+
+.letter-date {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    color: var(--color-text-light);
+}
+
+/* Wax Seal */
+.seal {
+    position: absolute;
+    bottom: 26%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    z-index: 5;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: sealPulse 3s ease-in-out infinite;
+}
+
+.seal-inner {
+    width: 100%;
+    height: 100%;
+    background: var(--seal-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.15),
+        inset 0 3px 6px rgba(255, 255, 255, 0.2),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.seal-inner::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.seal-initials {
+    font-family: var(--font-script);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--seal-text);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.envelope.open .seal {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.2) rotate(-30deg);
+}
+
+@keyframes sealPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(44, 44, 44, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(44, 44, 44, 0);
+    }
+}
+
+/* Open Hint */
+.open-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 3rem;
+    transition: all 0.5s ease;
+}
+
+.hint-line {
+    width: 50px;
+    height: 1px;
+    background: var(--color-border);
+}
+
+.hint-text {
+    font-family: var(--font-serif);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: lowercase;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+.envelope.open ~ .open-hint {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+/* ----------------------------------------
+   Invitation Section
+   ---------------------------------------- */
+.invitation-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+    padding: 80px 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.9s ease;
+    overflow: hidden;
+}
+
+.invitation-section.visible {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
+}
+
+/* Invitation Card */
+.invitation-card {
+    max-width: 540px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Card Frame */
+.card-frame {
+    background: var(--color-card);
+    padding: 3.5rem 2rem;
+    position: relative;
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.05),
+        0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* Double Border */
+.card-frame::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid var(--color-border);
+    pointer-events: none;
+}
+
+.card-frame::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--color-border-light);
+    pointer-events: none;
+}
+
+/* Corner Ornaments */
+.corner-ornament {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--color-primary);
+    opacity: 0.3;
+}
+
+.corner-ornament-tl { top: 22px; left: 22px; border-right: none; border-bottom: none; }
+.corner-ornament-tr { top: 22px; right: 22px; border-left: none; border-bottom: none; }
+.corner-ornament-bl { bottom: 22px; left: 22px; border-right: none; border-top: none; }
+.corner-ornament-br { bottom: 22px; right: 22px; border-left: none; border-top: none; }
+
+@media (min-width: 480px) {
+    .card-frame {
+        padding: 4.5rem 3.5rem;
+    }
+
+    .card-frame::before {
+        inset: 18px;
+    }
+
+    .card-frame::after {
+        inset: 23px;
+    }
+
+    .corner-ornament { width: 40px; height: 40px; }
+    .corner-ornament-tl { top: 28px; left: 28px; }
+    .corner-ornament-tr { top: 28px; right: 28px; }
+    .corner-ornament-bl { bottom: 28px; left: 28px; }
+    .corner-ornament-br { bottom: 28px; right: 28px; }
+}
+
+/* Card Header */
+.card-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.card-subtitle {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-text-light);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--spacing-md);
+}
+
+.card-names {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bride-name,
+.groom-name {
+    font-family: var(--font-script);
+    font-size: 3.2rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--color-primary);
+    line-height: 1.15;
+}
+
+@media (min-width: 480px) {
+    .bride-name,
+    .groom-name {
+        font-size: 4rem;
+    }
+}
+
+.names-and {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-accent);
+    margin: 0.4rem 0;
+}
+
+/* Ornaments */
+.ornament {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--spacing-lg) 0;
+    color: var(--color-primary);
+}
+
+.ornament-svg {
+    width: 160px;
+    height: 20px;
+    opacity: 0.5;
+}
+
+.ornament-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: var(--spacing-md) 0;
+}
+
+.ornament-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.ornament-line {
+    width: 70px;
+    height: 1px;
+    background: var(--color-border);
+}
+
+/* Card Sections */
+.card-section {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-label {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.section-date {
+    font-family: var(--font-serif);
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.date-day {
+    font-weight: 500;
+}
+
+.date-divider {
+    margin: 0 0.5rem;
+    color: var(--color-primary);
+}
+
+.section-time {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.venue-name {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--color-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.venue-address {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 32px;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.btn svg {
+    width: 17px;
+    height: 17px;
+    transition: transform 0.4s ease;
+}
+
+.btn-outline {
+    color: var(--color-primary);
+    background: transparent;
+    border: 1px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline:hover svg {
+    transform: scale(1.15);
+}
+
+/* Card Footer */
+.card-footer {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border-light);
+}
+
+.footer-ornament {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-ornament span {
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary);
+    transform: rotate(45deg);
+    opacity: 0.4;
+}
+
+.footer-ornament span:nth-child(2) {
+    opacity: 0.25;
+}
+
+.footer-message {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-signature {
+    font-family: var(--font-script);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--color-primary);
+    line-height: 1.6;
+}
+
+/* ----------------------------------------
+   Animations
+   ---------------------------------------- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.invitation-section.visible .card-header {
+    animation: fadeInUp 0.9s ease 0.2s both;
+}
+
+.invitation-section.visible .ornament:first-of-type {
+    animation: fadeIn 0.8s ease 0.35s both;
+}
+
+.invitation-section.visible .date-section {
+    animation: fadeInUp 0.9s ease 0.45s both;
+}
+
+.invitation-section.visible .ornament-small {
+    animation: fadeIn 0.8s ease 0.6s both;
+}
+
+.invitation-section.visible .venue-section {
+    animation: fadeInUp 0.9s ease 0.7s both;
+}
+
+.invitation-section.visible .card-footer {
+    animation: fadeInUp 0.9s ease 0.85s both;
+}
+
+/* ----------------------------------------
+   Responsive
+   ---------------------------------------- */
+@media (max-width: 380px) {
+    .envelope {
+        width: 295px;
+        height: 210px;
+    }
+
+    .bride-name,
+    .groom-name {
+        font-size: 2.5rem;
+    }
+
+    .card-frame {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .section-date {
+        font-size: 1.5rem;
+    }
+
+    .venue-name {
+        font-size: 1.3rem;
+    }
+}
+
+/* ----------------------------------------
+   Print Styles
+   ---------------------------------------- */
+@media print {
+    .theme-switcher,
+    .envelope-section {
+        display: none !important;
+    }
+
+    .invitation-section {
+        opacity: 1 !important;
+        position: static !important;
+        padding: 0;
+        background: white;
+    }
+
+    .card-frame {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

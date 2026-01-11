@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Јелена и Димитрије - Венчање</title>
+    <meta name="description" content="Позивница за венчање Јелене и Димитрија - 10. мај 2026.">
+    <meta name="theme-color" content="#2c2c2c">
+
+    <!-- Google Fonts - Elegant Serif Italic with Cyrillic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+Infant:ital,wght@0,400;0,500;1,400;1,500&family=Josefin+Sans:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Spectral:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Font Settings Panel -->
+    <div class="theme-switcher" id="theme-switcher">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Изаберите фонт">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                <line x1="9" y1="20" x2="15" y2="20"></line>
+                <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+        </button>
+        <div class="theme-panel" id="theme-panel">
+            <p class="theme-panel-title">Изаберите фонт</p>
+            <div class="font-options" id="font-options">
+                <button class="font-btn" data-font="cormorant-infant" title="Cormorant Infant">
+                    <span class="font-preview font-cormorant-infant">Јелена & Димитрије</span>
+                </button>
+                <button class="font-btn" data-font="cormorant-garamond" title="Cormorant Garamond">
+                    <span class="font-preview font-cormorant-garamond">Јелена & Димитрије</span>
+                </button>
+                <button class="font-btn" data-font="playfair" title="Playfair Display">
+                    <span class="font-preview font-playfair">Јелена & Димитрије</span>
+                </button>
+                <button class="font-btn" data-font="lora" title="Lora">
+                    <span class="font-preview font-lora">Јелена & Димитрије</span>
+                </button>
+                <button class="font-btn" data-font="spectral" title="Spectral">
+                    <span class="font-preview font-spectral">Јелена & Димитрије</span>
+                </button>
+                <button class="font-btn" data-font="eb-garamond" title="EB Garamond">
+                    <span class="font-preview font-eb-garamond">Јелена & Димитрије</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Envelope Section -->
+    <section class="envelope-section" id="envelope-section">
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <!-- Envelope liner pattern -->
+                <div class="envelope-liner"></div>
+
+                <!-- Back of envelope -->
+                <div class="envelope-back"></div>
+
+                <!-- Letter inside -->
+                <div class="letter" id="letter">
+                    <div class="letter-content">
+                        <span class="letter-script">Јелена & Димитрије</span>
+                        <span class="letter-date">10 · 05 · 2026</span>
+                    </div>
+                </div>
+
+                <!-- Front flap (triangle) -->
+                <div class="envelope-flap">
+                    <div class="flap-inner"></div>
+                </div>
+
+                <!-- Envelope front -->
+                <div class="envelope-front"></div>
+
+                <!-- Wax seal -->
+                <div class="seal">
+                    <div class="seal-inner">
+                        <span class="seal-initials">Ј&Д</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="open-hint">
+                <span class="hint-line"></span>
+                <span class="hint-text">додирните за отварање</span>
+                <span class="hint-line"></span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Invitation Section -->
+    <section class="invitation-section" id="invitation-section">
+        <div class="invitation-card">
+            <!-- Elegant frame -->
+            <div class="card-frame">
+                <!-- Corner Ornaments -->
+                <div class="corner-ornament corner-ornament-tl"></div>
+                <div class="corner-ornament corner-ornament-tr"></div>
+                <div class="corner-ornament corner-ornament-bl"></div>
+                <div class="corner-ornament corner-ornament-br"></div>
+
+                <!-- Header -->
+                <header class="card-header">
+                    <p class="card-subtitle">Са великом радошћу позивамо Вас на венчање</p>
+
+                    <div class="card-names">
+                        <h1 class="bride-name">Јелена</h1>
+                        <span class="names-and">&</span>
+                        <h1 class="groom-name">Димитрије</h1>
+                    </div>
+                </header>
+
+                <!-- Ornamental divider -->
+                <div class="ornament">
+                    <svg viewBox="0 0 200 20" class="ornament-svg">
+                        <path d="M0,10 C30,10 30,3 50,3 C70,3 70,10 100,10 C130,10 130,17 150,17 C170,17 170,10 200,10" fill="none" stroke="currentColor" stroke-width="1"/>
+                        <circle cx="100" cy="10" r="3" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <!-- Date & Time Section -->
+                <div class="card-section date-section">
+                    <p class="section-label">Недеља</p>
+                    <p class="section-date">
+                        <span class="date-day">10</span>
+                        <span class="date-divider">·</span>
+                        <span class="date-month">мај</span>
+                        <span class="date-divider">·</span>
+                        <span class="date-year">2026</span>
+                    </p>
+                    <p class="section-time">у 16:00 часова</p>
+
+                    <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=%D0%92%D0%B5%D0%BD%D1%87%D0%B0%D1%9A%D0%B5%20%D0%88%D0%B5%D0%BB%D0%B5%D0%BD%D0%B5%20%D0%B8%20%D0%94%D0%B8%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D1%98%D0%B0&dates=20260510T140000Z/20260510T220000Z&location=%D0%A1%D0%B2%D0%B5%D1%87%D0%B0%D0%BD%D0%B0%20%D0%A1%D0%B0%D0%BB%D0%B0%20%D0%9A%D0%B5%D1%81%D1%82%D0%B5%D0%BD%2C%20%D0%9D%D0%BE%D0%B2%D0%B8%20%D0%A1%D0%B0%D0%B4%2C%20%D0%A1%D1%80%D0%B1%D0%B8%D1%98%D0%B0&details=%D0%A0%D0%B0%D0%B4%D1%83%D1%98%D0%B5%D0%BC%D0%BE%20%D1%81%D0%B5%20%D0%B2%D0%B0%D1%88%D0%B5%D0%BC%20%D0%B4%D0%BE%D0%BB%D0%B0%D1%81%D0%BA%D1%83%21"
+                       class="btn btn-outline"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Додај у календар
+                    </a>
+                </div>
+
+                <!-- Small ornament -->
+                <div class="ornament ornament-small">
+                    <span class="ornament-dot"></span>
+                    <span class="ornament-line"></span>
+                    <span class="ornament-dot"></span>
+                </div>
+
+                <!-- Venue Section -->
+                <div class="card-section venue-section">
+                    <p class="section-label">Место одржавања</p>
+                    <h2 class="venue-name">Свечана Сала Кестен</h2>
+                    <p class="venue-address">Нови Сад, Србија</p>
+
+                    <a href="https://www.google.com/maps/search/?api=1&query=Svecana+Sala+Kesten+Novi+Sad+Serbia"
+                       class="btn btn-outline"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Прикажи на мапи
+                    </a>
+                </div>
+
+                <!-- Footer -->
+                <footer class="card-footer">
+                    <div class="footer-ornament">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <p class="footer-message">Радујемо се Вашем присуству!</p>
+                    <p class="footer-signature">Са љубављу,<br>Јелена и Димитрије</p>
+                </footer>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
