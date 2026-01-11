@@ -14,8 +14,8 @@
     // State
     let isOpened = false;
 
-    // Wedding date: May 10, 2026 at 16:00 (Serbia time, UTC+2)
-    const weddingDate = new Date('2026-05-10T16:00:00+02:00');
+    // RSVP date: April 15, 2026 at 16:00 (Serbia time, UTC+2)
+    const rsvpDate = new Date('2026-04-15T16:00:00+02:00');
 
     /**
      * Initialize the application
@@ -39,7 +39,7 @@
      */
     function updateCountdown() {
         const now = new Date();
-        const diff = weddingDate - now;
+        const diff = rsvpDate - now;
 
         if (diff <= 0) {
             // Wedding day has arrived
