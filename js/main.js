@@ -61,6 +61,93 @@
         document.getElementById('countdown-seconds').textContent = seconds;
     }
 
+    // =====================
+    // RSVP Form
+    // =====================
+    // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyMQzI1RBnxSR1jCS9l7VoRNhwNRbkTlisiVT8fNH8lWu2qClyq-pTLNtyqMvUJ2NHX/exec';
+
+    const rsvpForm = document.getElementById('rsvp-form');
+    const formStatus = document.getElementById('form-status');
+    const guestsGroup = document.getElementById('guests-group');
+    const submitBtn = document.getElementById('rsvp-submit');
+
+    if (rsvpForm) {
+        // Toggle guests field based on attendance
+        rsvpForm.addEventListener('change', function(e) {
+            if (e.target.name === 'attending') {
+                if (e.target.value === 'Не') {
+                    guestsGroup.classList.add('hidden-field');
+                } else {
+                    guestsGroup.classList.remove('hidden-field');
+                }
+            }
+        });
+
+        rsvpForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            formStatus.textContent = '';
+            formStatus.className = 'form-status';
+
+            // Validate
+            var name = rsvpForm.querySelector('[name="name"]').value.trim();
+            var attending = rsvpForm.querySelector('[name="attending"]:checked');
+
+            if (!name) {
+                showFormError('Молимо унесите Ваше име.');
+                rsvpForm.querySelector('[name="name"]').classList.add('error');
+                return;
+            }
+            rsvpForm.querySelector('[name="name"]').classList.remove('error');
+
+            if (!attending) {
+                showFormError('Молимо означите да ли долазите.');
+                return;
+            }
+
+            var guests = attending.value === 'Да' ? rsvpForm.querySelector('[name="guests"]').value : '0';
+            var message = rsvpForm.querySelector('[name="message"]').value.trim();
+
+            // Disable button
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Шаљем...';
+
+            var data = {
+                name: name,
+                attending: attending.value,
+                guests: guests,
+                message: message
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function() {
+                formStatus.textContent = 'Хвала Вам! Ваша потврда је примљена.';
+                formStatus.className = 'form-status success';
+                rsvpForm.reset();
+                guestsGroup.classList.remove('hidden-field');
+            })
+            .catch(function() {
+                showFormError('Дошло је до грешке. Покушајте поново или нас контактирајте на Viber.');
+            })
+            .finally(function() {
+                submitBtn.classList.remove('loading');
+                submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13L2 9L22 2Z"></path></svg> Пошаљи потврду';
+            });
+        });
+    }
+
+    function showFormError(msg) {
+        formStatus.textContent = msg;
+        formStatus.className = 'form-status error';
+        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13L2 9L22 2Z"></path></svg> Пошаљи потврду';
+    }
+
     /**
      * Set up all event listeners
      */
